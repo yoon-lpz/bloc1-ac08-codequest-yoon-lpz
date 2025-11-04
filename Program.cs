@@ -76,14 +76,14 @@ public class Program
             }
             catch (FormatException)
             {
-                Console.WriteLine(InputErrorMessage);
                 validInput = false;
             }
             catch (Exception)
             {
-                Console.WriteLine(InputErrorMessage);
                 validInput = false;
             }
+            if (!validInput) {
+                Console.WriteLine(InputErrorMessage);
 
             switch (op)
             {
