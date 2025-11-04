@@ -21,6 +21,13 @@ public class Program
         const string TitleHigh = "Wow! You can summon dragons without burning the lab!";
         const string TitleAdvanced = "You assumed Arcanes Master's rank!";
 
+        const string doorMessage = "You're at door {0}. You have {1} try left to guess the code (1-5)";
+        const string doorWrongInput = "Invalid input. Please enter a number between 1 and 5.";
+        const string doorWrong = "Wrong code";
+        const string doorFail = "The dragon has detected your presence and has expelled you from the server!";
+        const string doorGuessed = "The dragon respects you. You have unlocked the next level!";
+        const string doorWin = "You have unlocked the final level. Prepare for battle!";
+
         int op = 0;
         bool validInput;
 
@@ -30,6 +37,13 @@ public class Program
         int totalPoints = 0;
         string title;
         string name;
+
+        int code;
+        int codeTry = 0;
+        int numPortes = 3;
+        int intent = 3;
+        bool doorValid;
+        bool dungeonValid;
 
         Random rnd = new Random();
 
@@ -112,6 +126,37 @@ public class Program
                     }
                     break;
                 case 2:
+                    dungeonValid = true;
+                    for (int i = 1; i <= numPortes && dungeonValid; i++)
+                    {
+                        code = rnd.Next(1, 6);
+                        doorValid = false;
+                        validInput = true;
+                        for (int o = intent; o > 0 && !doorValid; o--)
+                        {
+                            Console.WriteLine(doorMessage, i, o);
+
+                            try
+                            {
+                                codeTry = Convert.ToInt32(Console.ReadLine());
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine(doorWrongInput);
+                                validInput = false;
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine(doorWrongInput);
+                                validInput = false;
+                            }
+
+                            Console.WriteLine(validInput && codeTry == code ? doorGuessed : doorWrong);
+                            doorValid = validInput && codeTry == code;
+                        }
+                        dungeonValid = doorValid;
+                    }
+                    Console.WriteLine(dungeonValid ? doorWin : doorFail);
                     break;
                 case 3:
                     break;
