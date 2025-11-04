@@ -17,7 +17,7 @@ Now you have 5 excavations to try to loot as much bits as possible. You can eith
 If you get more then 200 bits, you'll get the golden CPU.
 
 ## Test game
-*Menu*
+### Menu
 |Case              | Expected                                               | Happened                                               |
 |------------------|--------------------------------------------------------|--------------------------------------------------------|
 |Not a number      | "Invalid input. Please enter a number between 0 and 3."| "Invalid input. Please enter a number between 0 and 3."|
@@ -26,3 +26,10 @@ If you get more then 200 bits, you'll get the golden CPU.
 |Number 2          | Starts chapter 2                                       | Starts chapter 2                                       |
 |Number 3          | Starts chapter 3                                       | Starts chapter 3                                       |
 |Number 0          | Exits program                                          | Exits program                                          |
+
+**Case: not a number (q)**
+|command|itineration|command|    |                   | Action                                     |
+| -     | -         | -     | op | validInput        |                                            |
+| 1     | 1         | 1     | op | validInput        | Menu outputs                               |
+| 1     | 1         | 2     | op | validInput = true |                                            |
+| 1     | 1         | 3     |    |                   | Console.ReadLine()                         |
