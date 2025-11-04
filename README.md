@@ -18,11 +18,11 @@ If you get more then 200 bits, you'll get the golden CPU.
 
 ## Test game
 *Menu*
-|Case              | Expected                                               |
-|------------------|--------------------------------------------------------|
-|Not a number      | "Invalid input. Please enter a number between 0 and 3."|
-|Not a valid number| "Invalid input. Please enter a number between 0 and 3."|
-|Number 1          | Starts chapter 1                                       |
-|Number 2          | Starts chapter 2                                       |
-|Number 3          | Starts chapter 4                                       |
-|Number 0          | Exits program                                          |
+|Case              | Expected                                               | Happened                                               |
+|------------------|--------------------------------------------------------|--------------------------------------------------------|
+|Not a number      | "Invalid input. Please enter a number between 0 and 3."| "Invalid input. Please enter a number between 0 and 3."|
+|Not a valid number| "Invalid input. Please enter a number between 0 and 3."| "Invalid input. Please enter a number between 0 and 3."|
+|Number 1          | Starts chapter 1                                       | Starts chapter 1                                       |
+|Number 2          | Starts chapter 2                                       | Starts chapter 2                                       |
+|Number 3          | Starts chapter 3                                       | Starts chapter 3                                       |
+|Number 0          | Exits program                                          | Exits program                                          |
