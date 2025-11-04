@@ -82,8 +82,10 @@ public class Program
             {
                 validInput = false;
             }
-            if (!validInput) {
+            if (!validInput)
+            {
                 Console.WriteLine(InputErrorMessage);
+            }
 
             switch (op)
             {
