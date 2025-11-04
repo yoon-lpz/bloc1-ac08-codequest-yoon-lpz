@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 public class Program
 {
@@ -21,12 +22,18 @@ public class Program
         const string TitleHigh = "Wow! You can summon dragons without burning the lab!";
         const string TitleAdvanced = "You assumed Arcanes Master's rank!";
 
-        const string doorMessage = "You're at door {0}. You have {1} try left to guess the code (1-5)";
-        const string doorWrongInput = "Invalid input. Please enter a number between 1 and 5.";
-        const string doorWrong = "Wrong code";
-        const string doorFail = "The dragon has detected your presence and has expelled you from the server!";
-        const string doorGuessed = "The dragon respects you. You have unlocked the next level!";
-        const string doorWin = "You have unlocked the final level. Prepare for battle!";
+        const string DoorMessage = "You're at door {0}. You have {1} try left to guess the code (1-5)";
+        const string DoorWrongInput = "Invalid input. Please enter a number between 1 and 5.";
+        const string DoorWrong = "Wrong code";
+        const string DoorFail = "The dragon has detected your presence and has expelled you from the server!";
+        const string DoorGuessed = "The dragon respects you. You have unlocked the next level!";
+        const string DoorWin = "You have unlocked the final level. Prepare for battle!";
+
+        const string ExcavationDay = "Day {0}";
+        const string ExcavationZero = "Today's not your lucky day, you got 0 bits.";
+        const string ExcavationSmth = "You got {0} bits";
+        const string ExcavationWin = "You've unlocked gold GPU! Your spells now run at 120 FPS!";
+        const string ExcavationFail = "Your magic card is still integrated. It's time to defeat another dragon!";
 
         int op = 0;
         bool validInput;
@@ -44,6 +51,10 @@ public class Program
         int intent = 3;
         bool doorValid;
         bool dungeonValid;
+
+        int excavations = 5;
+        int bits = 0;
+        int currentBits;
 
         Random rnd = new Random();
 
@@ -72,11 +83,6 @@ public class Program
             {
                 Console.WriteLine(InputErrorMessage);
                 validInput = false;
-            }
-
-            if (validInput)
-            {
-                Console.WriteLine(op);
             }
 
             switch (op)
@@ -134,7 +140,7 @@ public class Program
                         validInput = true;
                         for (int o = intent; o > 0 && !doorValid; o--)
                         {
-                            Console.WriteLine(doorMessage, i, o);
+                            Console.WriteLine(DoorMessage, i, o);
 
                             try
                             {
@@ -142,23 +148,34 @@ public class Program
                             }
                             catch (FormatException)
                             {
-                                Console.WriteLine(doorWrongInput);
+                                Console.WriteLine(DoorWrongInput);
                                 validInput = false;
                             }
                             catch (Exception)
                             {
-                                Console.WriteLine(doorWrongInput);
+                                Console.WriteLine(DoorWrongInput);
                                 validInput = false;
                             }
 
-                            Console.WriteLine(validInput && codeTry == code ? doorGuessed : doorWrong);
+                            Console.WriteLine(validInput && codeTry == code ? DoorGuessed : DoorWrong);
                             doorValid = validInput && codeTry == code;
                         }
                         dungeonValid = doorValid;
                     }
-                    Console.WriteLine(dungeonValid ? doorWin : doorFail);
+                    Console.WriteLine(dungeonValid ? DoorWin : DoorFail);
                     break;
                 case 3:
+                    for (int i = 1; i <= excavations; i++)
+                    {
+                        Console.WriteLine(ExcavationDay, i);
+
+                        currentBits = rnd.Next(4, 51);
+                        currentBits = currentBits == 4 ? 0 : currentBits;
+                        Console.WriteLine(currentBits == 0 ? ExcavationZero : ExcavationSmth, currentBits);
+                        bits += currentBits;
+                    }
+
+                    Console.WriteLine(bits >= 200 ? ExcavationWin : ExcavationFail);
                     break;
                 default:
                     Console.WriteLine(InputErrorMessage);
